@@ -1,11 +1,40 @@
 <section class="product-blicksolutions">
   <div class="page-width">
     <div class="pdp-wrapper">
-      <!-- Work In Progress -->
-      <p>This is the PDP</p>
+      <div class="product-gallery">
+        <div id="splide" class="splide">
+          <div class="splide__track">
+            <ul class="splide__list">
+              {% for media in product.media %}
+                <li class="splide__slide">
+                  {{ media | image_url: width: 800 | image_tag }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Splide('#splide', {
+      type: 'slide',
+      perPage: 1,
+      pagination: false,
+      arrows: true,
+      heightRatio: 0.6,
+      breakpoints: {
+        768: {
+          heightRatio: 1,
+          arrows: false,
+        },
+      },
+    }).mount();
+  });
+</script>
 
 {% schema %}
 {
