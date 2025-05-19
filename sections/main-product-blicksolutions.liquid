@@ -1,78 +1,137 @@
 {{ 'section-main-product-blicksolutions.css' | asset_url | stylesheet_tag }}
 
 <section class="product-blicksolutions">
-  <div class="page-width">
-    <div class="pdp-wrapper">
-      <div class="product-gallery">
-        {% comment %} Work in Progress {% endcomment %}
+  <div class="product-content-wrapper">
+    <div class="product-gallery-wrapper">
+      <!-- Thumbnail Carousel -->
+      <div id="thumbnail-carousel" class="splide" aria-label="Thumbnail Carousel">
+        <div class="splide__track">
+          <ul class="splide__list">
+            {% for image in product.images %}
+              <li class="splide__slide">
+                {{ image | image_url: width: 100 | image_tag: alt: 'product image' }}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
       </div>
-
-      <div class="product-info">
-        <h1 class="product-title">{{ product.title }}</h1>
-        <p class="product-description">{{ product.description }}</p>
-
-        {% if product.compare_at_price > product.price %}
-          <p class="product-price-compare">
-            <s>{{ product.compare_at_price | money }}</s>
-          </p>
-        {% endif %}
-
-        <p class="product-price">{{ product.price | money }}</p>
-        
-        <p class="product-tax-note">
-          {{ 'products.product.taxes_included' | t }}
-        </p>
-
-        {% if product.available %}
-          <p class="product-availability available">
-            {{ 'products.product.inventory_in_stock' | t }}, {{ 'products.product.normal_shipping_time' | t }}
-          </p>
-        {% else %}
-          <p class="product-availability unavailable">
-            {{ 'products.product.inventory_out_of_stock' | t }}
-          </p>
-        {% endif %}
-
-        <form method="post" action="/cart/add">
-          <input 
-            type="hidden" 
-            name="id" 
-            value="{{ product.variants.first.id }}">
-          <button 
-            type="submit" 
-            {% if product.selected_or_first_available_variant.available == false or product.available == null
-            %}
-              disabled
-            {% endif %}
-            class="product-add-to-cart">
-            {{ 'products.product.add_to_cart' | t }}
-          </button>
-        </form>
-      </div>
-
-      <div class="usp-wrapper">
-        {% for block in section.blocks %}
-          {% if block.type == 'usp' %}
-            <div class="usp-item">
-              {% if block.settings.icon != blank %}
-                <img
-                  src="{{ block.settings.icon | image_url: width: 64, height: 64 }}"
-                  alt="USP Icon"
-                  class="usp-icon"
-                  width="64"
-                  height="64"/>
-              {% endif %}
-              <div class="usp-content">
-                <p class="usp-title">{{ block.settings.title }}</p>
-                <p class="usp-subtitle">{{ block.settings.subtitle }}</p>
-              </div>
-            </div>
-          {% endif %}
-        {% endfor %}
+      <!-- Main Carousel -->
+      <div id="main-carousel" class="splide" aria-label="Main Carousel">
+        <div class="splide__track">
+          <ul class="splide__list">
+            {% for image in product.images %}
+              <li class="splide__slide">
+                {{ image | image_url: width: 600 | image_tag: alt: 'product image' }}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
       </div>
     </div>
+    <div class="product-info">
+      <h1 class="product-title">{{ product.title }}</h1>
+      <p class="product-description">{{ product.description }}</p>
+      {% if product.compare_at_price > product.price %}
+        <p class="product-price-compare">
+          <span>{{ product.compare_at_price | money }}</span>
+        </p>
+      {% endif %}
+      <p class="product-price">{{ product.price | money }}</p>
+    
+      <p class="product-tax-note">
+        {{ 'products.product.taxes_included' | t }}
+      </p>
+      {% if product.available %}
+        <p class="product-availability available">
+          {{ 'products.product.inventory_in_stock' | t }}, {{ 'products.product.normal_shipping_time' | t }}
+        </p>
+      {% else %}
+        <p class="product-availability unavailable">
+          {{ 'products.product.inventory_out_of_stock' | t }}
+        </p>
+      {% endif %}
+      <form method="post" action="/cart/add">
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.variants.first.id }}">
+        <button
+          type="submit"
+          {% if product.selected_or_first_available_variant.available == false or product.available == null
+          %}
+            disabled
+          {% endif %}
+          class="product-add-to-cart">
+          {{ 'products.product.add_to_cart' | t }}
+        </button>
+      </form>
+    </div>
   </div>
+
+  <div class="usp-wrapper">
+    {% for block in section.blocks %}
+      {% if block.type == 'usp' %}
+        <div class="usp-item">
+          {% if block.settings.icon != blank %}
+            <img
+              src="{{ block.settings.icon | image_url: width: 64, height: 64 }}"
+              alt="USP Icon"
+              class="usp-icon"
+              width="64"
+              height="64"/>
+          {% endif %}
+          <div class="usp-content">
+            <p class="usp-title">{{ block.settings.title }}</p>
+            <p class="usp-subtitle">{{ block.settings.subtitle }}</p>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
 </section>
+
+{%- comment -%}
+  Initialize synchronized Splide sliders:
+  - #thumbnail-slider: shows clickable thumbnails
+  - #main-slider: shows full-size product media
+  - On desktop: vertical thumbs | On mobile: horizontal layout
+{%- endcomment -%}
+
+{%- comment -%} SplideJS Gallery Synchronisation {%- endcomment -%}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const main = new Splide('#main-carousel', {
+      type       : 'fade',
+      rewind     : true,
+      pagination : false,
+      arrows     : false,
+      height     : '100%',
+    });
+
+    const thumbs = new Splide('#thumbnail-carousel', {
+      direction  : 'ttb',
+      height     : '480px',
+      perPage    : 4,
+      gap        : '8px',
+      pagination : false,
+      arrows     : true,
+      wheel      : true,
+      breakpoints: {
+        768: {
+          direction   : 'ltr',
+          height      : 'auto',
+          fixedWidth  : 80,
+          gap         : '1rem',
+        }
+      }
+    });
+
+    main.sync(thumbs);
+    main.mount();
+    thumbs.mount();
+  });
+</script>
 
 {% schema %}
 {
