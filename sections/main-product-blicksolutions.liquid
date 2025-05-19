@@ -2,17 +2,34 @@
   <div class="page-width">
     <div class="pdp-wrapper">
       <div class="product-gallery">
-        <div id="splide" class="splide">
-          <div class="splide__track">
-            <ul class="splide__list">
-              {% for media in product.media %}
-                <li class="splide__slide">
-                  {{ media | image_url: width: 800 | image_tag }}
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
+        {% comment %} Work in Progress {% endcomment %}
+      </div>
+      <div class="product-info">
+        <h1 class="product-title">{{ product.title }}</h1>
+        <p class="product-description">{{ product.description }}</p>
+
+        {% if product.compare_at_price > product.price %}
+          <p class="product-price-compare">
+            <s>{{ product.compare_at_price | money }}</s>
+          </p>
+        {% endif %}
+
+        <p class="product-price">{{ product.price | money }}</p>
+        
+        <p class="product-tax-note">
+          {{ 'products.product.taxes_included' | t }}
+        </p>
+
+        {% if product.available %}
+          <p class="product-availability available">
+            🟢 {{ 'products.product.inventory_in_stock' | t }}, {{ 'products.product.normal_shipping_time' | t }}
+          </p>
+        {% else %}
+          <p class="product-availability unavailable">
+            🔴 {{ 'products.product.inventory_out_of_stock' | t }}
+          </p>
+        {% endif %}
+
       </div>
     </div>
   </div>

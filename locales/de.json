@@ -166,6 +166,7 @@
       "inventory_low_stock_show_count": "Niedriger Lagerbestand: {{ quantity }} verbleibend",
       "inventory_out_of_stock": "Nicht vorrätig",
       "inventory_out_of_stock_continue_selling": "Auf Lager",
+      "normal_shipping_time": "in 2-3 Tagen bei dir",
       "sku": "SKU",
       "volume_pricing": {
         "title": "Volumenabhängige Preisgestaltung",
@@ -175,7 +176,7 @@
         "price_at_each_html": "bei {{ price }}/Stück"
       },
       "product_variants": "Produktvarianten",
-      "taxes_included": "Inkl. Steuern.",
+      "taxes_included": "Inkl. MwSt.",
       "duties_included": "Inkl. Zollgebühren.",
       "duties_and_taxes_included": "Inkl. Zollgebühren und Steuern."
     },
