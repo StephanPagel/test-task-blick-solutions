@@ -76,3 +76,34 @@
   cursor: pointer;
   margin-top: 1rem;
 }
+
+.usp-wrapper {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.usp-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 22rem;
+}
+
+.usp-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.usp-title {
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.usp-subtitle {
+  font-size: 1.3rem;
+  color: #666;
+  margin: 0.2rem 0 0;
+}

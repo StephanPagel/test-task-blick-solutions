@@ -6,6 +6,7 @@
       <div class="product-gallery">
         {% comment %} Work in Progress {% endcomment %}
       </div>
+
       <div class="product-info">
         <h1 class="product-title">{{ product.title }}</h1>
         <p class="product-description">{{ product.description }}</p>
@@ -47,7 +48,27 @@
             {{ 'products.product.add_to_cart' | t }}
           </button>
         </form>
+      </div>
 
+      <div class="usp-wrapper">
+        {% for block in section.blocks %}
+          {% if block.type == 'usp' %}
+            <div class="usp-item">
+              {% if block.settings.icon != blank %}
+                <img
+                  src="{{ block.settings.icon | image_url: width: 64, height: 64 }}"
+                  alt="USP Icon"
+                  class="usp-icon"
+                  width="64"
+                  height="64"/>
+              {% endif %}
+              <div class="usp-content">
+                <p class="usp-title">{{ block.settings.title }}</p>
+                <p class="usp-subtitle">{{ block.settings.subtitle }}</p>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -59,10 +80,38 @@
   "tag": "section",
   "class": "section-pdp",
   "settings": [],
-  "blocks": [],
+  "blocks": [
+    {
+      "type": "usp",
+      "name": "USP-Element",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Überschrift"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Untertitel"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
   "presets": [
     {
-      "name": "PDP BlickSolutions"
+      "name": "PDP BlickSolutions",
+      "blocks": [
+        { "type": "usp" },
+        { "type": "usp" },
+        { "type": "usp" }
+      ]
     }
   ]
 }
