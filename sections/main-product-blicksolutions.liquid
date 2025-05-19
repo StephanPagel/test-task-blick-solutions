@@ -30,6 +30,22 @@
           </p>
         {% endif %}
 
+        <form method="post" action="/cart/add">
+          <input 
+            type="hidden" 
+            name="id" 
+            value="{{ product.variants.first.id }}">
+          <button 
+            type="submit" 
+            {% if product.selected_or_first_available_variant.available == false or product.available == null
+            %}
+              disabled
+            {% endif %}
+            class="product-add-to-cart">
+            {{ 'products.product.add_to_cart' | t }}
+          </button>
+        </form>
+
       </div>
     </div>
   </div>
