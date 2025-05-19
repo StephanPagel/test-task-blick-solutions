@@ -1,0 +1,78 @@
+.product-info-blicksolutions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 28rem;
+  font-family: var(--font-body-family);
+}
+
+.product-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.product-vendor {
+  font-size: 1.3rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.product-price-compare {
+  font-size: 1.4rem;
+  color: #888;
+}
+
+.product-price-compare s {
+  text-decoration: line-through;
+}
+
+.product-price {
+  font-size: 1.6rem;
+  color: #23a047;
+  font-weight: 600;
+}
+
+.product-tax-note {
+  font-size: 1.2rem;
+  color: #777;
+}
+
+.product-availability {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+.product-availability.available::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #23a047;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.product-availability.unavailable::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #ff0000;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.product-add-to-cart {
+  background: #265cf4;
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
