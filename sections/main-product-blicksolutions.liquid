@@ -9,7 +9,7 @@
           <ul class="splide__list">
             {% for image in product.images %}
               <li class="splide__slide">
-                {{ image | image_url: width: 100 | image_tag: alt: 'product image' }}
+                {{ image | image_url: width: 80 | image_tag: alt: 'product image' }}
               </li>
             {% endfor %}
           </ul>
@@ -21,7 +21,7 @@
           <ul class="splide__list">
             {% for image in product.images %}
               <li class="splide__slide">
-                {{ image | image_url: width: 600 | image_tag: alt: 'product image' }}
+                {{ image | image_url: width: 500 | image_tag: alt: 'product image' }}
               </li>
             {% endfor %}
           </ul>
@@ -111,12 +111,14 @@
 
     const thumbs = new Splide('#thumbnail-carousel', {
       direction  : 'ttb',
-      height     : '480px',
+      height     : '360px',
+      gap        : '10px',
       perPage    : 4,
-      gap        : '8px',
+      perMove    : 1,
       pagination : false,
       arrows     : true,
-      wheel      : true,
+      rewind     : true,
+      isNavigation: true,
       breakpoints: {
         768: {
           direction   : 'ltr',
