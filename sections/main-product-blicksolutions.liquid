@@ -40,16 +40,17 @@
     </div>
     <div class="product-info-card">
       <h1 class="product-title">{{ product.title }}</h1>
-      <p class="product-description">{{ product.description }}</p>
-      {% if product.compare_at_price > product.price %}
-        <p class="product-price-compare">
-          <span>{{ product.compare_at_price | money }}</span>
-        </p>
-      {% endif %}
-      <p class="product-price">{{ product.price | money }}</p>
-    
-      <p class="product-tax-note">
-        {{ 'products.product.taxes_included' | t }}
+      <p class="product-description">{{ product.description | strip_html | strip_newlines }}</p>
+      <p class="product-price-info">
+        {% if product.compare_at_price > product.price %}
+          <span class="product-price-compare">
+            {{ product.compare_at_price | money }}
+          </span>
+        {% endif %}
+        <span class="product-price">{{ product.price | money }}</span>
+        <span class="product-tax-note">
+          {{ 'products.product.taxes_included' | t }}
+        </span>
       </p>
       {% if product.available %}
         <p class="product-availability available">
