@@ -4,31 +4,41 @@
   <div class="product-content-wrapper">
     <div class="product-gallery-wrapper">
       <!-- Thumbnail Carousel -->
-      <div id="thumbnail-carousel" class="splide" aria-label="Thumbnail Carousel">
-        <div class="splide__track">
-          <ul class="splide__list">
-            {% for image in product.images %}
-              <li class="splide__slide">
-                {{ image | image_url: width: 80 | image_tag: alt: 'product image' }}
-              </li>
-            {% endfor %}
-          </ul>
+      <div class="thumbnail-carousel-wrapper">
+        <div id="thumbnail-carousel" class="splide" aria-label="Thumbnail Carousel">
+          <div class="splide__track">
+            <ul class="splide__list">
+              {% for image in product.images %}
+                <li class="splide__slide">
+                  {{ image | image_url: width: 80 | image_tag: alt: 'product image' }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
         </div>
       </div>
       <!-- Main Carousel -->
-      <div id="main-carousel" class="splide" aria-label="Main Carousel">
-        <div class="splide__track">
-          <ul class="splide__list">
-            {% for image in product.images %}
-              <li class="splide__slide">
-                {{ image | image_url: width: 500 | image_tag: alt: 'product image' }}
-              </li>
-            {% endfor %}
-          </ul>
+      <div class="main-carousel-wrapper">
+        <div id="main-carousel" class="splide" aria-label="Main Carousel">
+          <div class="splide__track">
+            <ul class="splide__list">
+              {% for image in product.images %}
+                <li class="splide__slide">
+                  {{ image | image_url: width: 500 | image_tag: alt: 'product image' }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <!-- custom navigation arrows under main image -->
+        <div class="custom-thumb-arrows">
+          <button class="thumb-arrow thumb-prev">∧</button>
+          <button class="thumb-arrow thumb-next">∧</button>
         </div>
       </div>
+
     </div>
-    <div class="product-info">
+    <div class="product-info-wrapper">
       <h1 class="product-title">{{ product.title }}</h1>
       <p class="product-description">{{ product.description }}</p>
       {% if product.compare_at_price > product.price %}
@@ -116,7 +126,7 @@
       perPage    : 4,
       perMove    : 1,
       pagination : false,
-      arrows     : true,
+      arrows     : false,
       rewind     : true,
       isNavigation: true,
       breakpoints: {
@@ -132,6 +142,14 @@
     main.sync(thumbs);
     main.mount();
     thumbs.mount();
+
+      document.querySelector('.thumb-prev')?.addEventListener('click', () => {
+      thumbs.go('<');
+    });
+
+    document.querySelector('.thumb-next')?.addEventListener('click', () => {
+      thumbs.go('>');
+    });
   });
 </script>
 

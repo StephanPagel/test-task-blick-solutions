@@ -7,10 +7,10 @@
 .product-gallery-wrapper {
   display: flex;
   align-items: center;
-  width: 55%;
+  width: 53%;
 }
 
-#thumbnail-carousel {
+.thumbnail-carousel-wrapper {
   width: 20%;
 }
 
@@ -20,8 +20,9 @@
   overflow: hidden;
 }
 
-#main-carousel {
+.main-carousel-wrapper {
   width: 80%;
+  margin-left: 1rem;
 }
 
 #main-carousel .splide__slide img,
@@ -50,7 +51,8 @@
   border: none;
 }
 
-.product-info {
+.product-info-wrapper {
+  outline: 1px solid red;
   width: 45%;
 }
 
