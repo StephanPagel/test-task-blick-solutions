@@ -1,5 +1,6 @@
 .product-content-wrapper {
   display: flex;
+  justify-content: space-between;
   width: 60vw;
   margin: 3rem auto;
 }
@@ -51,9 +52,10 @@
   border: none;
 }
 
-.product-info-wrapper {
-  outline: 1px solid red;
+.product-info-card {
   width: 45%;
+  border-radius: 3px;
+  box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.15);
 }
 
 /* .product-gallery-wrapper {
