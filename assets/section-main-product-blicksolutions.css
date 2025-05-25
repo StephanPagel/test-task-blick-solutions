@@ -203,3 +203,10 @@ section.product-blicksolutions * {
   padding: 1.5rem;
   width: 100%;
 }
+
+.usp-wrapper {
+  width: 60vw;
+  margin: 8rem auto;
+  display: flex;
+  justify-content: space-between;
+}
