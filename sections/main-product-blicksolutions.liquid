@@ -31,9 +31,9 @@
           </div>
         </div>
         <!-- custom navigation arrows under main image -->
-        <div class="custom-thumb-arrows">
-          <button class="thumb-arrow thumb-prev">∧</button>
-          <button class="thumb-arrow thumb-next">∧</button>
+        <div class="custom-thumbnail-arrows">
+          <button disabled class="thumbnail-arrow-prev">{% render 'icon-arrow-prev' %}</button>
+          <button class="thumbnail-arrow-next">{% render 'icon-arrow-next' %}</button>
         </div>
       </div>
 
@@ -128,7 +128,6 @@
       perMove    : 1,
       pagination : false,
       arrows     : false,
-      rewind     : true,
       isNavigation: true,
       breakpoints: {
         768: {
@@ -144,13 +143,25 @@
     main.mount();
     thumbs.mount();
 
-      document.querySelector('.thumb-prev')?.addEventListener('click', () => {
+      document.querySelector('.thumbnail-arrow-prev')?.addEventListener('click', () => {
       thumbs.go('<');
     });
 
-    document.querySelector('.thumb-next')?.addEventListener('click', () => {
+    document.querySelector('.thumbnail-arrow-next')?.addEventListener('click', () => {
       thumbs.go('>');
     });
+
+    function updateArrowState(slider) {
+      const prevBtn = document.querySelector('.thumbnail-arrow-prev');
+      const nextBtn = document.querySelector('.thumbnail-arrow-next');
+
+      if (!prevBtn || !nextBtn) return;
+
+      prevBtn.disabled = slider.index === 0;
+      nextBtn.disabled = slider.index >= slider.length - slider.options.perPage;
+    }
+
+    thumbs.on('mounted move', () => updateArrowState(thumbs));
   });
 </script>
 

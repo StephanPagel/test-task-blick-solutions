@@ -80,6 +80,23 @@ section.product-blicksolutions * {
   border: none;
 }
 
+.custom-thumbnail-arrows button, 
+.custom-thumbnail-arrows button {
+  border: none;
+  background: transparent;
+}
+
+.custom-thumbnail-arrows button svg {
+  transition: opacity 0.2s ease;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.custom-thumbnail-arrows button:disabled svg {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
 .product-info-card {
   padding: 2.5rem;
   width: 42%;
