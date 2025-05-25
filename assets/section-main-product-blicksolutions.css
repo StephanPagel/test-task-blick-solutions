@@ -70,7 +70,6 @@ section.product-blicksolutions * {
   border: none;
 }
 
-
 #thumbnail-carousel .splide__slide.is-active {
   opacity: 1;
   border: none;
@@ -82,6 +81,7 @@ section.product-blicksolutions * {
   right: 0;
   display: flex;
   justify-content: center;
+  margin-top: .5rem;
 }
 
 .custom-thumbnail-arrows button {
@@ -100,6 +100,10 @@ section.product-blicksolutions * {
   cursor: not-allowed;
 }
 
+.thumbnail-arrow-prev {
+  margin-right: 1.2rem;
+}
+
 .product-info-card {
   padding: 2.5rem;
   width: 42%;
@@ -109,7 +113,7 @@ section.product-blicksolutions * {
 }
 
 .product-title {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 2.5rem;
   color: rgba(0, 0, 0, 1);
   letter-spacing: 0;
@@ -131,7 +135,7 @@ section.product-blicksolutions * {
 }
 
 .product-price-compare {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.8rem;
   color: rgba(0, 0, 0, 1);
   letter-spacing: 0;
@@ -141,7 +145,7 @@ section.product-blicksolutions * {
 }
 
 .product-price {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.8rem;
   color: rgba(31, 71, 255, 1);
   letter-spacing: 0;
