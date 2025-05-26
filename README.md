@@ -77,8 +77,8 @@ assets/
 ## 🔍 Preview
 
 To preview the current dev theme:
-(View Theme)[https://dev-test-task-blicksolutions.myshopify.com]
-(Customize Theme)[https://dev-test-task-blicksolutions.myshopify.com/admin/themes/182252405079/editor]
+[View Theme](https://dev-test-task-blicksolutions.myshopify.com)
+[Customize Them](https://dev-test-task-blicksolutions.myshopify.com/admin/themes/182252405079/editor)
 ---
 
 Built with ❤️ by [Stephan Pagel](https://github.com/StephanPagel)
