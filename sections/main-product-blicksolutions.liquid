@@ -111,37 +111,48 @@
 {%- comment -%} SplideJS Gallery Synchronisation {%- endcomment -%}
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    // MAIN CAROUSEL
     const main = new Splide('#main-carousel', {
-      type       : 'fade',
-      rewind     : true,
-      pagination : false,
+      type       : 'loop',
+      perPage    : 1,
+      focus      : 'center',
+      gap        : '.7rem',
+      padding    : { left: 0, right: 0 }, 
       arrows     : false,
-      height     : '100%',
-    });
-
-    const thumbs = new Splide('#thumbnail-carousel', {
-      direction  : 'ttb',
-      height     : '445px',
-      gap        : '15px',
-      perPage    : 4,
-      perMove    : 1,
       pagination : false,
-      arrows     : false,
-      isNavigation: true,
+      heightRatio: 1,
       breakpoints: {
         768: {
-          direction   : 'ltr',
-          height      : 'auto',
-          gap         : '1rem',
+          padding: { left: '5vw', right: '5vw' },
+          pagination: true,
+        },
+      },
+    });
+
+    // THUMBNAIL CAROUSEL
+    const thumbs = new Splide('#thumbnail-carousel', {
+      direction     : 'ttb',
+      height        : '445px',
+      gap           : '15px',
+      perPage       : 4,
+      perMove       : 1,
+      pagination    : false,
+      arrows        : false,
+      isNavigation  : true,
+      breakpoints: {
+        768: {
+          direction: 'ltr',
+          height   : null,
         }
       }
     });
 
     main.sync(thumbs);
+
     main.mount();
     thumbs.mount();
 
-      document.querySelector('.thumbnail-arrow-prev')?.addEventListener('click', () => {
+    document.querySelector('.thumbnail-arrow-prev')?.addEventListener('click', () => {
       thumbs.go('<');
     });
 
@@ -162,6 +173,7 @@
     thumbs.on('mounted move', () => updateArrowState(thumbs));
   });
 </script>
+
 
 {% schema %}
 {
