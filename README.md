@@ -2,6 +2,10 @@
 
 This repository contains a custom Product Detail Page (PDP) implementation for a Shopify development store as part of a technical assessment for **BlickSolutions**.
 
+This project is based on Shopify's Dawn theme.  
+All custom code for the PDP is written by Stephan Pagel.
+
+
 ## ✅ Goal
 
 Build a custom, fully functional, and responsive PDP that matches the provided desktop and mobile design mockups exactly in terms of:
